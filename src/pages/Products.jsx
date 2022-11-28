@@ -97,6 +97,7 @@ const Products = () => {
             </div>
             <ul className='flex items-center justify-center gap-2 mt-2'>
               <li
+                onClick={() => setImages(0)}
                 className={`transition-all h-16 w-16 my-3 p-1 ${
                   images === 0 ? 'border-2 border-error rounded-md' : ''
                 }`}
@@ -108,6 +109,7 @@ const Products = () => {
                 />
               </li>
               <li
+                onClick={() => setImages(1)}
                 className={`transition-all h-16 w-16 my-3 p-1 ${
                   images === 1 ? 'border-2 border-error rounded-md' : ''
                 }`}
@@ -119,6 +121,7 @@ const Products = () => {
                 />
               </li>
               <li
+                onClick={() => setImages(2)}
                 className={`transition-all h-16 w-16 my-3 p-1 ${
                   images === 2 ? 'border-2 border-error rounded-md' : ''
                 }`}
