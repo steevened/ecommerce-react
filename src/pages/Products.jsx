@@ -46,7 +46,7 @@ const Products = () => {
           <div className=' w-5/6 h-full mx-auto overflow-hidden'>
             <ul
               className={`w-[300%] -translate-x-${
-                images === 0 || images === 3 ? '0' : `${images}/3`
+                images === 0 || images === 3 ? '0' : `${images}-3`
               } flex h-96  transition-all ease-in-out duration-700 `}
             >
               <li className='w-full  flex items-center justify-center'>
