@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getProductsThunk } from '../store/slices/products.slice'
 import { Link } from 'react-router-dom'
-import { GrCart } from 'react-icons/gr'
+
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import Steps from '../components/Steps'
@@ -33,7 +33,7 @@ const Products = () => {
     setQuantity(quantity <= 1 ? 1 : quantity - 1)
   }
 
-  // console.log(images)
+  console.log(product?.productImgs)
 
   return (
     <div className='pt-16  w-5/6 mx-auto'>
@@ -95,6 +95,41 @@ const Products = () => {
                 <AiOutlineArrowRight />
               </button>
             </div>
+            <ul className='flex items-center justify-center gap-2 mt-2'>
+              <li
+                className={`transition-all h-16 w-16 my-3 p-1 ${
+                  images === 0 ? 'border-2 border-error rounded-md' : ''
+                }`}
+              >
+                <img
+                  className='object-contain h-full w-full cursor-pointer '
+                  src={product?.productImgs[0]}
+                  alt='product'
+                />
+              </li>
+              <li
+                className={`transition-all h-16 w-16 my-3 p-1 ${
+                  images === 1 ? 'border-2 border-error rounded-md' : ''
+                }`}
+              >
+                <img
+                  className='object-contain h-full w-full cursor-pointer '
+                  src={product?.productImgs[1]}
+                  alt='product'
+                />
+              </li>
+              <li
+                className={`transition-all h-16 w-16 my-3 p-1 ${
+                  images === 2 ? 'border-2 border-error rounded-md' : ''
+                }`}
+              >
+                <img
+                  className='object-contain h-full w-full cursor-pointer '
+                  src={product?.productImgs[2]}
+                  alt='product'
+                />
+              </li>
+            </ul>
           </div>
         </div>
         {/* end of gallery */}
