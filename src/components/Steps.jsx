@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Steps = ({ product }) => {
   return (
-    <div className='text-sm breadcrumbs  mt-5 '>
+    <div className='text-sm breadcrumbs  my-12 '>
       <ul>
         <li>
           <Link to='/'>Home</Link>

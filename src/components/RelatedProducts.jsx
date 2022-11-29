@@ -6,9 +6,9 @@ const RelatedProducts = ({ relatedProducts }) => {
   const [idImg, setIdImg] = useState(null)
 
   return (
-    <div className='mt-24'>
+    <div className='mt-32'>
       <div className='text-center my-5'>
-        <h2 className='text-xl font-bold text-info'>Discover Similar Items</h2>
+        <h2 className='text-3xl font-bold text-info'>Discover Similar Items</h2>
       </div>
       <ul className='text-left md:grid-cols-2 grid xl:grid-cols-3  mx-auto my-10 gap-5'>
         {relatedProducts.map((product) => (

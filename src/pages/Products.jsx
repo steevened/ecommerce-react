@@ -22,7 +22,7 @@ const Products = () => {
   }, [])
 
   const relatedProducts = products.filter(
-    (el) => el.category.id === product.category.id
+    (el) => el.category.id === product?.category.id
   )
 
   const increment = () => {
@@ -33,7 +33,7 @@ const Products = () => {
     setQuantity(quantity <= 1 ? 1 : quantity - 1)
   }
 
-  console.log(product?.productImgs)
+  // console.log(product?.productImgs)
 
   return (
     <div className='pt-16  w-5/6 mx-auto'>

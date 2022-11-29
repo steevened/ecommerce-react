@@ -8,6 +8,7 @@ import Purchases from './pages/Purchases'
 import Navbar from './components/Navbar'
 import Loading from './components/Loading'
 import { useSelector } from 'react-redux'
+import ProtectedRoutes from './components/ProtectedRoutes'
 
 function App() {
   const isLoading = useSelector((state) => state.isLoading)
@@ -23,7 +24,9 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/products/:id' element={<Products />} />
-        <Route path='/purchases' element={<Purchases />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path='/purchases' element={<Purchases />} />
+        </Route>
       </Routes>
     </HashRouter>
   )
