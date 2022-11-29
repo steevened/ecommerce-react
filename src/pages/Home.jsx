@@ -10,7 +10,7 @@ import {
   filterThunk,
   getProductsThunk,
 } from '../store/slices/products.slice'
-import { GrCart } from 'react-icons/gr'
+import { BsCart2 } from 'react-icons/bs'
 
 function Home() {
   const [categories, setCategories] = useState([])
@@ -95,8 +95,8 @@ function Home() {
                       <p className='text-gray-500'>Price</p>
                       <p>{product?.price}</p>
                     </div>
-                    <button className='btn btn-ghost text-primary text-xl  grid place-content-center btn-circle absolute bottom-3 right-3 '>
-                      <GrCart />
+                    <button className='btn btn-accent text-xl  text-neutral grid place-content-center btn-circle absolute bottom-3 right-3 '>
+                      <BsCart2 />
                     </button>
                   </div>
                 </Link>
