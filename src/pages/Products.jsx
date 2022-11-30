@@ -9,7 +9,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai'
 import Steps from '../components/Steps'
 import RelatedProducts from '../components/RelatedProducts'
 
-const Products = () => {
+const Products = ({ cart, setCart }) => {
   const products = useSelector((state) => state.products)
   const { id } = useParams()
   const product = products.find((el) => el.id === Number(id))
@@ -33,14 +33,22 @@ const Products = () => {
     setQuantity(quantity <= 1 ? 1 : quantity - 1)
   }
 
+  const addtoCart = () => {
+    const productBuyed = {
+      id: product.id,
+      quantity,
+    }
+    console.log(productBuyed)
+  }
+
   // console.log(product?.productImgs)
 
   return (
-    <div className='pt-16  w-5/6 mx-auto'>
+    <div onClick={() => setCart(false)} className='pt-16  w-5/6 mx-auto'>
       <Steps product={product} />
       {/* start of product */}
 
-      <div className='text-center text-xl flex flex-col md:flex-row gap-5 md:pt-16'>
+      <div className='text-center text-xl flex flex-col md:flex-row gap-5 '>
         {/* start of gallery */}
         <div className='relative flex-1'>
           <div className=' w-5/6 h-full mx-auto overflow-hidden'>
@@ -173,8 +181,8 @@ const Products = () => {
                 </div>
               </div>
             </div>
-
-            <div className='md:order-3 mt-3'>
+            {/* ----------------------- */}
+            <div onClick={addtoCart} className='md:order-3 mt-3'>
               <button className='text-base-100 btn btn-block  btn-error rounded-none'>
                 Add To Cart
               </button>

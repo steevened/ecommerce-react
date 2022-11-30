@@ -4,14 +4,13 @@ import { getPurchasesThunk } from '../store/slices/purchases.slice'
 import Steps from '../components/Steps'
 import { Link } from 'react-router-dom'
 
-const Purchases = () => {
+const Purchases = ({ cart, setCart }) => {
   const dispatch = useDispatch()
 
   const purchases = useSelector((state) => state.purchases)
 
-  console.log(purchases[0]?.cart)
+  // console.log(purchases[0]?.cart)
 
-  // const [date, setDate] = useState({})
   const months = [
     'January',
     'February',
@@ -32,7 +31,10 @@ const Purchases = () => {
   }, [])
 
   return (
-    <div className='pt-20 container mx-auto px-5'>
+    <div
+      onClick={() => setCart(false)}
+      className='pt-20 container mx-auto px-5'
+    >
       <div className='text-sm breadcrumbs'>
         <ul>
           <li>
@@ -56,8 +58,8 @@ const Purchases = () => {
               {Number(purchase?.cart.updatedAt.slice(0, 4))}
             </h2>
             {purchase?.cart?.products?.map((product) => (
-              <div className='py-10  w-full md:w-3/4 mx-auto'>
-                <Link key={product?.id} to={`/products/${product?.id}`}>
+              <div key={product?.id} className='py-10  w-full md:w-3/4 mx-auto'>
+                <Link to={`/products/${product?.id}`}>
                   <div className='flex justify-between items-center gap-5'>
                     <div className='flex-1'>
                       <p className='text-sm font-bold'>{product.title}</p>

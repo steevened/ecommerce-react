@@ -12,20 +12,46 @@ import ProtectedRoutes from './components/ProtectedRoutes'
 
 function App() {
   const isLoading = useSelector((state) => state.isLoading)
+  const [cart, setCart] = useState(false)
+  const [modalShowed, setModalShowed] = useState(false)
 
   // console.log(isLoading)
 
   return (
     <HashRouter>
-      <Navbar />
+      <Navbar
+        cart={cart}
+        setCart={setCart}
+        modalShowed={modalShowed}
+        setModalShowed={setModalShowed}
+      />
       {isLoading && <Loading />}
 
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/products/:id' element={<Products />} />
+        <Route
+          path='/'
+          element={
+            <Home
+              cart={cart}
+              setCart={setCart}
+              modalShowed={modalShowed}
+              setModalShowed={setModalShowed}
+            />
+          }
+        />
+        <Route
+          path='/login'
+          element={<Login cart={cart} setCart={setCart} />}
+        />
+        <Route
+          path='/products/:id'
+          element={<Products cart={cart} setCart={setCart} />}
+        />
         <Route element={<ProtectedRoutes />}>
-          <Route path='/purchases' element={<Purchases />} />
+          <Route
+            path='/purchases'
+            element={<Purchases cart={cart} setCart={setCart} />}
+          />
         </Route>
       </Routes>
     </HashRouter>

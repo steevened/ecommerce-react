@@ -11,11 +11,11 @@ import {
   getProductsThunk,
 } from '../store/slices/products.slice'
 import { BsCart2 } from 'react-icons/bs'
+import Cart from '../components/Cart'
 
-function Home() {
+function Home({ cart, setCart, setModalShowed, modalShowed }) {
   const [categories, setCategories] = useState([])
   const [inputSearch, setInputSearch] = useState('')
-  const [modalShowed, setModalShowed] = useState(false)
   const [minPrice, setMinPrice] = useState(null)
   const [maxPrice, setMaxPrice] = useState(99999)
 
@@ -46,7 +46,13 @@ function Home() {
         setMaxPrice={setMaxPrice}
         maxPrice={maxPrice}
       />
-      <div onClick={() => setModalShowed(false)} className='py-10 md:ml-80'>
+      <div
+        onClick={() => {
+          setModalShowed(false)
+          setCart(false)
+        }}
+        className='py-10 md:ml-80'
+      >
         <SearchInput
           inputSearch={inputSearch}
           setInputSearch={setInputSearch}
