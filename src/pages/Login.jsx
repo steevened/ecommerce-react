@@ -43,9 +43,9 @@ const Login = ({ cart, setCart }) => {
   // console.log(tokens())
 
   return (
-    <div>
+    <div onClick={() => setCart(false)}>
       {!isToken ? (
-        <div onClick={() => setCart(false)} className='h-screen '>
+        <div className='h-screen '>
           <div
             onClick={() => setError(false)}
             className={`${
@@ -109,14 +109,19 @@ const Login = ({ cart, setCart }) => {
           </div>
         </div>
       ) : (
-        <div className='absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 card card-side bg-base-100 shadow-xl w-5/6 mx-auto px-2'>
+        <div className='absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 card card-side bg-base-200 shadow-xl w-5/6 max-w-xs  mx-auto px-2'>
           <figure className='w-20 aspect-auto'>
             <img src={user} alt='user' />
           </figure>
-          <div className='card-body'>
-            <p>Max Rangel</p>
+          <div className='card-body flex flex-col items-end'>
+            <div className='pr-1 text-lg font-bold'>
+              <p>Max Rangel</p>
+            </div>
             <div className='card-actions justify-end'>
-              <button onClick={logOut} className='btn btn-primary'>
+              <button
+                onClick={logOut}
+                className='btn btn-base rounded-none btn-sm shadow-lg text-base-100'
+              >
                 Log out
               </button>
             </div>
