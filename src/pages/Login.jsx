@@ -75,7 +75,7 @@ const Login = ({ cart, setCart }) => {
                   className='input bg-base-300 rounded-none'
                   placeholder='Password...'
                 />
-                <button className='btn rounded-none  w-1/2 mx-auto'>
+                <button className='btn rounded-none  w-1/2 mx-auto text-base-100'>
                   Log in
                 </button>
               </div>

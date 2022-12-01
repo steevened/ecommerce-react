@@ -109,7 +109,8 @@ function Home({ cart, setCart, setModalShowed, modalShowed }) {
                     </div>
                     <button
                       onClick={() => addtoCart(product.id)}
-                      className='btn btn-accent text-xl  text-neutral grid place-content-center btn-circle absolute bottom-3 right-3 '
+                      className='btn btn-base text-xl  text-base-100 grid place-content-center btn-circle absolute bottom-3 right-3 tooltip tooltip-base tooltip-bottom'
+                      data-tip='Add to Cart'
                     >
                       <BsCart2 />
                     </button>

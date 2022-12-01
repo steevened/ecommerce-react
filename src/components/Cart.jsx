@@ -35,7 +35,7 @@ const Cart = ({ cart, setCart }) => {
     >
       <h1 className='text-xl'>Your Cart</h1>
 
-      <div className='text-left pb-28 mt-3 flex flex-col gap-10 overflow-auto h-full w-full'>
+      <div className='text-left pb-80 pt-4  mt-3 flex flex-col gap-10 overflow-auto h-full w-full'>
         {cartProducts.map((product) => (
           <div
             key={product.id}
@@ -45,7 +45,8 @@ const Cart = ({ cart, setCart }) => {
               <p className='text-[10px] text-gray-500'>{product.brand}</p>
               <div
                 onClick={() => dispatch(deleteItemThunk(product.id))}
-                className='text-error cursor-pointer'
+                className='text-error tooltip-primary cursor-pointer tooltip tooltip-left'
+                data-tip='Delete'
               >
                 <TfiTrash />
               </div>

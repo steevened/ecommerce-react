@@ -20,17 +20,30 @@ const Navbar = ({ cart, setCart, setModalShowed, modalShowed }) => {
         </div>
         <div className='flex-none'>
           <ul className='menu menu-horizontal p-0'>
-            <li className='text-xl'>
+            <li
+              className='text-xl tooltip tooltip-primary tooltip-bottom'
+              data-tip='Login'
+            >
               <Link to='/login'>
                 <HiOutlineUser />
               </Link>
+              {/* <div className='tooltip' data-tip='hello'>
+                <button className='btn'>Hover me</button>
+              </div> */}
             </li>
-            <li className='text-xl'>
+            <li
+              className='text-xl tooltip tooltip-primary tooltip-bottom'
+              data-tip='Purchases'
+            >
               <Link to='/purchases'>
                 <BiPurchaseTag />
               </Link>
             </li>
-            <li className='text-xl' onClick={() => setCart(true)}>
+            <li
+              className='text-xl tooltip tooltip-primary tooltip-bottom'
+              data-tip='Cart'
+              onClick={() => setCart(true)}
+            >
               <div>
                 <BsCart2 />
               </div>

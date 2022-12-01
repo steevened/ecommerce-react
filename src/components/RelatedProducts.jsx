@@ -1,9 +1,21 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { GrCart } from 'react-icons/gr'
+import { postCartThunk } from '../store/slices/cart.slice'
+import { useDispatch } from 'react-redux'
 
-const RelatedProducts = ({ relatedProducts }) => {
+const RelatedProducts = ({ relatedProducts, setQuantity }) => {
   const [idImg, setIdImg] = useState(null)
+  const dispatch = useDispatch()
+
+  const addtoCart = (id) => {
+    const productBuyed = {
+      id,
+      quantity: 1,
+    }
+    // console.log(productBuyed)
+    dispatch(postCartThunk(productBuyed))
+  }
 
   return (
     <div className='mt-32'>
@@ -12,12 +24,13 @@ const RelatedProducts = ({ relatedProducts }) => {
       </div>
       <ul className='text-left md:grid-cols-2 grid xl:grid-cols-3  mx-auto my-10 gap-5'>
         {relatedProducts.map((product) => (
-          <Link
+          <div
+            onClick={() => setQuantity(1)}
             className='border-2 border-base-300  w-full '
-            to={`/products/${product.id}`}
             key={product.id}
           >
-            <div
+            <Link
+              to={`/products/${product.id}`}
               onMouseOver={() => {
                 setIdImg(product.id)
               }}
@@ -40,18 +53,21 @@ const RelatedProducts = ({ relatedProducts }) => {
                 src={product.productImgs[1]}
                 alt='product'
               />
-            </div>
+            </Link>
             <div className='border-t-2 border-base-300 relative h-32'>
               <div className='px-2 py-3 flex flex-col justify-between'>
                 <h2 className='text-lg'>{product?.title}</h2>
                 <p className='text-gray-500'>Price</p>
                 <p>{product?.price}</p>
               </div>
-              <button className='btn btn-ghost text-primary text-xl  grid place-content-center btn-circle absolute bottom-3 right-3 '>
+              <button
+                onClick={() => addtoCart(product.id)}
+                className='btn btn-ghost text-primary text-xl  grid place-content-center btn-circle absolute bottom-3 right-3 '
+              >
                 <GrCart />
               </button>
             </div>
-          </Link>
+          </div>
         ))}
       </ul>
     </div>

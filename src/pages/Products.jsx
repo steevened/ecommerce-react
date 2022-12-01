@@ -89,7 +89,7 @@ const Products = ({ cart, setCart }) => {
                     images <= 0 ? product?.productImgs.length - 1 : images - 1
                   )
                 }
-                className='btn btn-circle btn-focus top-[42.5%] left-2 absolute text-base-100 '
+                className='btn btn-circle btn-focus top-[42.5%] left-2 absolute text-base-100'
               >
                 <AiOutlineArrowLeft />
               </button>
@@ -205,7 +205,10 @@ const Products = ({ cart, setCart }) => {
         {/* end of product info */}
       </div>
       {/* end of product */}
-      <RelatedProducts relatedProducts={relatedProducts} />
+      <RelatedProducts
+        relatedProducts={relatedProducts}
+        setQuantity={setQuantity}
+      />
     </div>
   )
 }
