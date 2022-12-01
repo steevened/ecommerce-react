@@ -12,16 +12,17 @@ import {
 } from '../store/slices/products.slice'
 import { BsCart2 } from 'react-icons/bs'
 import Cart from '../components/Cart'
+import { postCartThunk } from '../store/slices/cart.slice'
 
 function Home({ cart, setCart, setModalShowed, modalShowed }) {
   const [categories, setCategories] = useState([])
   const [inputSearch, setInputSearch] = useState('')
   const [minPrice, setMinPrice] = useState(null)
   const [maxPrice, setMaxPrice] = useState(99999)
-
   const [idImg, setIdImg] = useState(null)
-
   const dispatch = useDispatch()
+  const products = useSelector((state) => state.products)
+
   useEffect(() => {
     dispatch(getProductsThunk())
 
@@ -30,9 +31,14 @@ function Home({ cart, setCart, setModalShowed, modalShowed }) {
       .then((res) => setCategories(res.data.data.categories))
   }, [])
 
-  const products = useSelector((state) => state.products)
-
-  // console.log(minPrice, maxPrice)
+  const addtoCart = (id) => {
+    const productBuyed = {
+      id,
+      quantity: 1,
+    }
+    // console.log(productBuyed)
+    dispatch(postCartThunk(productBuyed))
+  }
 
   return (
     <div className='text-center relative overflow-hidden pt-16'>
@@ -66,12 +72,12 @@ function Home({ cart, setCart, setModalShowed, modalShowed }) {
             (product) =>
               Number(product.price) > minPrice &&
               Number(product.price) < maxPrice && (
-                <Link
+                <div
                   className='border-2 border-base-300  w-full '
-                  to={`/products/${product.id}`}
                   key={product.id}
                 >
-                  <div
+                  <Link
+                    to={`/products/${product.id}`}
                     onMouseOver={() => {
                       setIdImg(product.id)
                     }}
@@ -94,18 +100,21 @@ function Home({ cart, setCart, setModalShowed, modalShowed }) {
                       src={product.productImgs[1]}
                       alt='product'
                     />
-                  </div>
+                  </Link>
                   <div className='border-t-2 border-base-300 relative h-32'>
                     <div className='px-2 py-3 flex flex-col justify-between'>
                       <h2 className='text-lg'>{product?.title}</h2>
                       <p className='text-gray-500'>Price</p>
                       <p>{product?.price}</p>
                     </div>
-                    <button className='btn btn-accent text-xl  text-neutral grid place-content-center btn-circle absolute bottom-3 right-3 '>
+                    <button
+                      onClick={() => addtoCart(product.id)}
+                      className='btn btn-accent text-xl  text-neutral grid place-content-center btn-circle absolute bottom-3 right-3 '
+                    >
                       <BsCart2 />
                     </button>
                   </div>
-                </Link>
+                </div>
               )
           )}
         </ul>

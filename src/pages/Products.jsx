@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getProductsThunk } from '../store/slices/products.slice'
+
 import { Link } from 'react-router-dom'
 
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import Steps from '../components/Steps'
 import RelatedProducts from '../components/RelatedProducts'
+import { postCartThunk } from '../store/slices/cart.slice'
 
 const Products = ({ cart, setCart }) => {
   const products = useSelector((state) => state.products)
@@ -38,7 +40,8 @@ const Products = ({ cart, setCart }) => {
       id: product.id,
       quantity,
     }
-    console.log(productBuyed)
+    // console.log(productBuyed)
+    dispatch(postCartThunk(productBuyed))
   }
 
   // console.log(product?.productImgs)
@@ -182,7 +185,13 @@ const Products = ({ cart, setCart }) => {
               </div>
             </div>
             {/* ----------------------- */}
-            <div onClick={addtoCart} className='md:order-3 mt-3'>
+            <div
+              onClick={() => {
+                setCart(true)
+                addtoCart()
+              }}
+              className='md:order-3 mt-3'
+            >
               <button className='text-base-100 btn btn-block  btn-error rounded-none'>
                 Add To Cart
               </button>

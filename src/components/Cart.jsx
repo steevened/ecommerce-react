@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCartThunk } from '../store/slices/cart.slice'
+import {
+  checkoutThunk,
+  deleteItemThunk,
+  getCartThunk,
+} from '../store/slices/cart.slice'
 import { TfiTrash } from 'react-icons/tfi'
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, setCart }) => {
   const cartProducts = useSelector((state) => state.cart)
   const dispatch = useDispatch()
   const allProducts = useSelector((state) => state.products)
@@ -15,13 +19,13 @@ const Cart = ({ cart }) => {
   const totalPrice = () => {
     let total = 0
     cartProducts.forEach((product) => {
-      total += Number(product.price)
+      total += Number(product.price) * Number(product.productsInCart.quantity)
     })
 
     return total
   }
 
-  // console.log(totalPrice())
+  // console.log(cartProducts.length)
 
   return (
     <div
@@ -31,7 +35,7 @@ const Cart = ({ cart }) => {
     >
       <h1 className='text-xl'>Your Cart</h1>
 
-      <div className='text-left pb-28 mt-3 flex flex-col gap-10 overflow-auto h-full'>
+      <div className='text-left pb-28 mt-3 flex flex-col gap-10 overflow-auto h-full w-full'>
         {cartProducts.map((product) => (
           <div
             key={product.id}
@@ -39,7 +43,10 @@ const Cart = ({ cart }) => {
           >
             <div className='flex justify-between'>
               <p className='text-[10px] text-gray-500'>{product.brand}</p>
-              <div className='text-error cursor-pointer'>
+              <div
+                onClick={() => dispatch(deleteItemThunk(product.id))}
+                className='text-error cursor-pointer'
+              >
                 <TfiTrash />
               </div>
             </div>
@@ -51,15 +58,34 @@ const Cart = ({ cart }) => {
                 <p>{product.productsInCart.quantity}</p>
               </div>
               <div>
-                <p>${product.price}</p>
+                <p>
+                  $
+                  {Number(product.price) *
+                    Number(product.productsInCart.quantity)}
+                </p>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className='bg-base-200 flex justify-between absolute border-t-2 pb-10 pt-2 px-10  w-full right-0 bottom-0'>
-        <p className='text-gray-500 text-sm'>Total: </p>
-        <p> ${totalPrice()}</p>
+      <div className='bg-base-200   absolute border-t-2 pb-10 pt-2 px-10  w-full right-0 bottom-0'>
+        <div className='flex justify-between'>
+          <p className='text-gray-500 text-sm'>Total: </p>
+          <p> ${totalPrice()}</p>
+        </div>
+
+        <div className='mt-2'>
+          <button
+            disabled={cartProducts.length <= 0 ? true : false}
+            onClick={() => {
+              dispatch(checkoutThunk())
+              setCart(false)
+            }}
+            className='btn btn-base text-base-100 btn-block rounded-none'
+          >
+            Checkout
+          </button>
+        </div>
       </div>
     </div>
   )

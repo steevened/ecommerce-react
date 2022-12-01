@@ -38,7 +38,7 @@ const Navbar = ({ cart, setCart, setModalShowed, modalShowed }) => {
           </ul>
         </div>
       </div>
-      <Cart cart={cart} />
+      <Cart cart={cart} setCart={setCart} />
     </div>
   )
 }
