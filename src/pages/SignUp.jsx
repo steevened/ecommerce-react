@@ -77,7 +77,9 @@ const SignUp = ({ setCart }) => {
             />
           </div>
           <div>
-            <label htmlFor='tel'>Phone Number</label>
+            <label htmlFor='tel'>
+              Phone Number <span className='text-error'>*</span>
+            </label>
             <input
               className='input input-bordered rounded-none focus:outline-none w-full input-sm'
               type='tel'

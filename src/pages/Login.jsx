@@ -11,8 +11,8 @@ const Login = ({ cart, setCart }) => {
   const { register, handleSubmit } = useForm()
   const [error, setError] = useState(false)
   const [isToken, setIsToken] = useState(tokens() ? true : false)
-  const [name, setName] = useState('')
-  const [lastName, setLastName] = useState('')
+  // const [name, setName] = useState('')
+  // const [lastName, setLastName] = useState('')
   const navigate = useNavigate()
 
   const submit = (data) => {
@@ -23,9 +23,11 @@ const Login = ({ cart, setCart }) => {
         localStorage.setItem('token', res.data.data.token)
         setIsToken(true)
         console.log(res.data)
-        setName(res.data.data.user.firstName)
-        setLastName(res.data.data.user.lastName)
-        console.log(name)
+        localStorage.setItem('firstName', res.data.data.user.firstName)
+        localStorage.setItem('lastName', res.data.data.user.lastName)
+
+        // setName(res.data.data.user.firstName)
+        // setLastName(res.data.data.user.lastName)
 
         // navigate('/')
       })
@@ -41,11 +43,11 @@ const Login = ({ cart, setCart }) => {
     return item
   }
 
-  // let tokens = localStorage.getItem('token')
-
   const logOut = () => {
     localStorage.removeItem('token')
     setIsToken(false)
+    localStorage.removeItem('firstName')
+    localStorage.removeItem('lastName')
   }
 
   // console.log(tokens())
@@ -108,7 +110,7 @@ const Login = ({ cart, setCart }) => {
                   </button>
                 </div>
               </form>
-              <div className='text-center mt-2 text-sm text-gray-500'>
+              <div className='text-center mt-4 text-sm text-gray-500'>
                 <p>Don't have an account?</p>
                 <Link
                   className='btn btn-sm rounded-none  btn-ghost text-secondary-focus'
@@ -158,7 +160,8 @@ const Login = ({ cart, setCart }) => {
             <div className='card-body flex flex-col items-end'>
               <div className='pr-1 text-lg font-bold'>
                 <p>
-                  {name} {lastName}
+                  {localStorage.getItem('firstName')}{' '}
+                  {localStorage.getItem('lastName')}
                 </p>
               </div>
               <div className='card-actions justify-end'>
