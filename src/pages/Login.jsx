@@ -29,7 +29,7 @@ const Login = ({ cart, setCart }) => {
         // setName(res.data.data.user.firstName)
         // setLastName(res.data.data.user.lastName)
 
-        // navigate('/')
+        navigate('/')
       })
       .catch((error) => {
         if (error.response.status === 404) {
