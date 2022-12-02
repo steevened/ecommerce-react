@@ -9,6 +9,8 @@ import Navbar from './components/Navbar'
 import Loading from './components/Loading'
 import { useSelector } from 'react-redux'
 import ProtectedRoutes from './components/ProtectedRoutes'
+import Footer from './components/Footer'
+import SignUp from './pages/SignUp'
 
 function App() {
   const isLoading = useSelector((state) => state.isLoading)
@@ -25,6 +27,7 @@ function App() {
         modalShowed={modalShowed}
         setModalShowed={setModalShowed}
       />
+
       {isLoading && <Loading />}
 
       <Routes>
@@ -43,6 +46,7 @@ function App() {
           path='/login'
           element={<Login cart={cart} setCart={setCart} />}
         />
+        <Route path='/signup' element={<SignUp setCart={setCart} />} />
         <Route
           path='/products/:id'
           element={<Products cart={cart} setCart={setCart} />}
@@ -54,6 +58,7 @@ function App() {
           />
         </Route>
       </Routes>
+      {/* <Footer /> */}
     </HashRouter>
   )
 }

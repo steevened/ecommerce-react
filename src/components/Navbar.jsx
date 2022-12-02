@@ -21,7 +21,7 @@ const Navbar = ({ cart, setCart, setModalShowed, modalShowed }) => {
         <div className='flex-none'>
           <ul className='menu menu-horizontal p-0'>
             <li
-              className='text-xl tooltip tooltip-primary tooltip-bottom'
+              className='text-xl tooltip z-30 tooltip-primary tooltip-bottom'
               data-tip='Login'
             >
               <Link to='/login'>
@@ -32,7 +32,7 @@ const Navbar = ({ cart, setCart, setModalShowed, modalShowed }) => {
               </div> */}
             </li>
             <li
-              className='text-xl tooltip tooltip-primary tooltip-bottom'
+              className='text-xl tooltip z-30 tooltip-primary tooltip-bottom'
               data-tip='Purchases'
             >
               <Link to='/purchases'>
@@ -40,7 +40,7 @@ const Navbar = ({ cart, setCart, setModalShowed, modalShowed }) => {
               </Link>
             </li>
             <li
-              className='text-xl tooltip tooltip-primary tooltip-bottom'
+              className='text-xl tooltip z-30 tooltip-primary tooltip-bottom'
               data-tip='Cart'
               onClick={() => setCart(true)}
             >
